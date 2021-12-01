@@ -7,4 +7,7 @@ Uses serverless AWS services:
 - Glue for schema discovery
 - Athena for querying files with SQL
 - QuickSight for visualization
- 
+
+We use [Yelp dataset](https://www.yelp.com/dataset). Specifically, we select 
+a subset of data to work with, which as the most interesting for us in terms 
+of BI analysis.

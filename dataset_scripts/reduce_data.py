@@ -100,19 +100,19 @@ def user_json_fun(line_json: JsonType) -> JsonType:
 
     line_json["yelping_since"] = line_json["yelping_since"].split()[0]
 
-    try:
-        elite_years = line_json["elite"].split(",")
-        line_json["elite"] = list(map(int, elite_years))
-    except AttributeError:
-        pass
+    elite_years = line_json["elite"]
+    if elite_years:
+        line_json["elite"] = list(map(int, elite_years.split(",")))
+    else:
+        line_json["elite"] = []
 
     return line_json
 
 
 if __name__ == "__main__":
     for in_filename, out_filename, single_line_fun in [
-        ("yelp_academic_dataset_business.json", "business.json", business_json_fun),
-        ("yelp_academic_dataset_review.json", "review.json", review_json_fun),
+        #("yelp_academic_dataset_business.json", "business.json", business_json_fun),
+        #("yelp_academic_dataset_review.json", "review.json", review_json_fun),
         ("yelp_academic_dataset_user.json", "user.json", user_json_fun),
     ]:
         print(f"{out_filename} starting")

@@ -1,9 +1,9 @@
 from collections import Counter
 import json
 import os
-import re
 from typing import Any, Callable, Dict
 
+import regex as re
 from tqdm import tqdm
 
 
@@ -31,8 +31,8 @@ def process_file(
     if os.path.exists(out_filepath):
         os.remove(out_filepath)
 
-    with open(in_filepath, encoding="UTF-8") as in_file, open(
-        out_filepath, "w", encoding="UTF-8"
+    with open(in_filepath, encoding="utf-8") as in_file, open(
+        out_filepath, "w", encoding="utf-8"
     ) as out_file:
         lines = []
         for line in tqdm(in_file, total=get_num_lines(in_filepath)):
@@ -47,9 +47,20 @@ def business_json_fun(line_json: JsonType) -> JsonType:
         json.dumps(line_json)
         .replace('"True"', "true")
         .replace('"False"', "false")
+        .replace("True", "true")
+        .replace("False", "false")
+        .replace('"{', '{')
+        .replace('}"', '}')
     )
-    string_json = re.sub(r"u'([\s\S]+?)'", r"\1", string_json)
+    string_json = re.sub(r"u'([a-zA-Z_]+?)'", r"\1", string_json)
     string_json = re.sub(r"\"'([\s\S]+?)'\"", r'"\1"', string_json)
+    string_json = re.sub(r"'([a-zA-Z_\-]+?)':", r'"\1":', string_json)
+    string_json = re.sub(r'{([a-zA-Z]+)"', r'{"\1"', string_json)
+    string_json = re.sub('\'([a-zA-Z]+)":', r'"\1":', string_json)
+
+    string_json = string_json.replace("None", "null")
+    string_json = string_json.replace('"null"', "null")
+    string_json = string_json.replace("{'", '{"')
 
     line_json = json.loads(string_json)
 
@@ -111,9 +122,9 @@ def user_json_fun(line_json: JsonType) -> JsonType:
 
 if __name__ == "__main__":
     for in_filename, out_filename, single_line_fun in [
-        #("yelp_academic_dataset_business.json", "business.json", business_json_fun),
+        ("yelp_academic_dataset_business.json", "business.json", business_json_fun),
         #("yelp_academic_dataset_review.json", "review.json", review_json_fun),
-        ("yelp_academic_dataset_user.json", "user.json", user_json_fun),
+        #("yelp_academic_dataset_user.json", "user.json", user_json_fun),
     ]:
         print(f"{out_filename} starting")
         process_file(in_filename, out_filename, single_line_fun)

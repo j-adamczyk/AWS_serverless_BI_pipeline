@@ -71,6 +71,16 @@ def business_json_fun(line_json: JsonType) -> JsonType:
         pass
 
     try:
+        attributes = line_json["attributes"]
+        for attr_name, attr_value in attributes.items():
+            if attr_value is None or attr_value == "false":
+                attributes[attr_name] = False
+            elif attr_value == "true":
+                attributes[attr_name] = True
+    except AttributeError:
+        pass
+
+    try:
         line_json["days_open"] = list(line_json["hours"].keys())
         del line_json["hours"]
     except AttributeError:

@@ -8,7 +8,9 @@ DATA_DIR = os.path.join("data", "cleaned_data")
 SCHEMAS_DIR = os.path.join("data", "cleaned_data_schemas")
 
 
-def discover_schema(json_file_name: str, schema_file_name: Optional[str] = None) -> None:
+def discover_schema(
+    json_file_name: str, schema_file_name: Optional[str] = None
+) -> None:
     """
     Discovers the schema of JSON collection and prints it (if schema_file is None),
     or saves it to schema_file (if not None).

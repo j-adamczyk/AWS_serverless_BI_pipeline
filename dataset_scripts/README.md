@@ -1,17 +1,18 @@
-# Dataset cleaning scripts
+# Dataset processing scripts
 
 A few scripts for processing the Yelp dataset. The code assumes that .json 
 files are in the `/data` subdirectory, with raw JSONs (base dataset) in the 
 `/data/raw_data`. Other subdirectories are created by scripts as needed.
 
-### `reduce_data.py`
+### `clean_data.py`
 
-This script reduces the Yelp dataset to a subset used for further analysis:
+This script performs the initial cleaning of the Yelp dataset before further analysis:
 - `yelp_academic_dataset_business.json`:
   - reformatting due to inconsistencies of data, e.g. change `u'"value"'` to `"value"`
   - change `categories` ` from comma-separated string to list
   - change `hours` to `days_open`: drop hours information, use only days of week
   - drop `address`, `postal_code` and `is_open`
+  - heavy changes to `attributes` - selection of only a few, make data types more consistent
 - `yelp_academic_dataset_checkin.json`:
   - dropped, will not be used
 - `yelp_academic_dataset_review.json`:

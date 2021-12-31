@@ -1,13 +1,30 @@
-# AWS serverless BI pipeline
+# Dataset processing scripts
 
-Proof-of-concept for building serverless BI pipelines, with benchmarks of various approaches.
+A few scripts for processing the Yelp dataset. The code assumes that .json 
+files are in the `/data` subdirectory, with raw JSONs (base dataset) in the 
+`/data/raw_data`. Other subdirectories are created by scripts as needed.
 
-Uses serverless AWS services:
-- S3 as data lake
-- Glue for schema discovery
-- Athena for querying files with SQL
-- QuickSight for visualization
+### `clean_data.py`
 
-We use [Yelp dataset](https://www.yelp.com/dataset). Specifically, we select 
-a subset of data to work with, which as the most interesting for us in terms 
-of BI analysis.
+This script performs the initial cleaning of the Yelp dataset before further analysis:
+- `yelp_academic_dataset_business.json`:
+  - reformatting due to inconsistencies of data, e.g. change `u'"value"'` to `"value"`
+  - change `categories` ` from comma-separated string to list
+  - change `hours` to `days_open`: drop hours information, use only days of week
+  - drop `address`, `postal_code` and `is_open`
+  - heavy changes to `attributes` - selection of only a few, make data types more consistent
+- `yelp_academic_dataset_checkin.json`:
+  - dropped, will not be used
+- `yelp_academic_dataset_review.json`:
+  - drop review text
+  - drop `review_id`
+  - drop `date` time information, use hour only
+- `yelp_academic_dataset_tip.json`:
+  - dropped, will not be used
+- `yelp_academic_dataset_user.json`:
+  - drop `friends` and `name`
+  - drop `yelping_since` time information, use hour only
+  - change `elite` from comma-separated string to list
+
+Results are saved in `/data/cleaned_data`.
+  

@@ -26,5 +26,13 @@ This script performs the initial cleaning of the Yelp dataset before further ana
   - drop `yelping_since` time information, use hour only
   - change `elite` from comma-separated string to list
 
-Results are saved in `/data/cleaned_data`.
-  
+Results are saved in `/data/cleaned_data`. They are in default Athena format, 
+i.e. list of JSONs, one per line, separated with newlines.
+
+### `json_to_tabular.py`
+
+This scripts converts collections of JSONs, created with `clean_data.py`, to 
+CSV or Apache Parquet. Results are saved in `/data/csv_data` or `/data/parquet_data`, 
+depending on target format.
+
+

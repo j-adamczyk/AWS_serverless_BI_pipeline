@@ -19,19 +19,19 @@ def jsons_file_to_tabular_file(in_filename: str, out_filename: str, target_forma
     in_filepath = os.path.join(DATA_DIR, in_filename)
     df = pd.read_json(in_filepath, lines=True)
 
-    # change single quotes ' to double quotes " in JSONs
-    for col, dtype in zip(df.columns, df.dtypes):
-        if dtype == "object":
-            df[col] = (
-                df[col]
-                .astype(str).str
-                .replace("'", '"')
-                .replace("True", "true")
-                .replace("False", "false")
-                .replace("None", "null")
-            )
-
     if target_format == "csv":
+        # change single quotes ' to double quotes " in JSONs
+        for col, dtype in zip(df.columns, df.dtypes):
+            if dtype == "object":
+                df[col] = (
+                    df[col]
+                    .astype(str).str
+                    .replace("'", '"')
+                    .replace("True", "true")
+                    .replace("False", "false")
+                    .replace("None", "null")
+                )
+
         out_filepath = os.path.join(CSV_DATA_DIR, out_filename)
         df.to_csv(out_filepath, index=False, sep=";", quoting=csv.QUOTE_NONE, escapechar="\\")
     else:

@@ -42,8 +42,8 @@ def jsons_file_to_tabular_file(in_filename: str, out_filename: str, target_forma
 if __name__ == '__main__':
     for in_filename in ["business", "review", "user"]:
         out_filename = f"{in_filename}.csv"
-        #print(f"{out_filename} starting")
-        #jsons_file_to_tabular_file(in_filename, out_filename, "csv")
+        print(f"{out_filename} starting")
+        jsons_file_to_tabular_file(in_filename, out_filename, "csv")
         print()
 
         out_filename = f"{in_filename}.parquet"

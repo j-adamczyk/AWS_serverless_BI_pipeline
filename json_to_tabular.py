@@ -1,7 +1,5 @@
-import csv
 import json
 import os
-from typing import Any, Dict
 
 import pandas as pd
 
@@ -9,8 +7,6 @@ import pandas as pd
 DATA_DIR = os.path.join("data", "cleaned_data")
 CSV_DATA_DIR = os.path.join("data", "csv_data")
 PARQUET_DATA_DIR = os.path.join("data", "parquet_data")
-
-JsonType = Dict[str, Any]
 
 
 def jsons_file_to_tabular_file(in_filename: str, out_filename: str, target_format: str) -> None:

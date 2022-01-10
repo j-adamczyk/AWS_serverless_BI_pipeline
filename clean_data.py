@@ -2,7 +2,7 @@ from collections import Counter
 import copy
 import json
 import os
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict
 
 import regex as re
 from tqdm import tqdm

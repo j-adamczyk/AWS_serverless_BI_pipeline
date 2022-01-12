@@ -9,7 +9,9 @@ CSV_DATA_DIR = os.path.join("data", "csv_data")
 PARQUET_DATA_DIR = os.path.join("data", "parquet_data")
 
 
-def jsons_file_to_tabular_file(in_filename: str, out_filename: str, target_format: str) -> None:
+def jsons_file_to_tabular_file(
+    in_filename: str, out_filename: str, target_format: str
+) -> None:
     assert target_format in {"csv", "parquet"}
 
     in_filepath = os.path.join(DATA_DIR, in_filename)
@@ -28,7 +30,7 @@ def jsons_file_to_tabular_file(in_filename: str, out_filename: str, target_forma
         df.to_parquet(out_filepath, engine="pyarrow", compression="snappy", index=None)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for in_filename in ["business", "review", "user"]:
         out_filename = f"{in_filename}.csv"
         print(f"{out_filename} starting")

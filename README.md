@@ -1,4 +1,12 @@
-# Dataset processing scripts
+# AWS Serverless BI Pipeline
+
+A proof-of-concept (PoC) project for serverless Business Intelligence (BI) pipeline for non-relational data, using AWS tech stack:
+- AWS S3 - data lake
+- AWS Glue - data crawler (schema discovery tool)
+- AWS Athena - SQL query engine
+- AWS QuickSight - visualization tool
+
+## Data processing scripts
 
 A few scripts for processing the Yelp dataset. The code assumes that .json 
 files are in the `/data` subdirectory, with raw JSONs (base dataset) in the 

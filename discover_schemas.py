@@ -4,8 +4,8 @@ from typing import Optional
 
 from genson import SchemaBuilder
 
-DATA_DIR = os.path.join("data", "cleaned_data")
-SCHEMAS_DIR = os.path.join("data", "cleaned_data_schemas")
+DATA_DIR = os.path.join("data", "json_data")
+SCHEMAS_DIR = os.path.join("data", "json_data_schemas")
 
 
 def discover_schema(

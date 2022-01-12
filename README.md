@@ -26,13 +26,20 @@ This script performs the initial cleaning of the Yelp dataset before further ana
   - drop `yelping_since` time information, use hour only
   - change `elite` from comma-separated string to list
 
-Results are saved in `/data/cleaned_data`. They are in default Athena format, 
-i.e. list of JSONs, one per line, separated with newlines.
+Results are saved in `/data/json_data`. They are in default Athena format, 
+i.e. JSON stream (list of JSONs, one per line, separated with newlines).
+
+### `discover_schemas.py`
+
+This script crawls cleaned JSONs from `/data/json_data` and saves their schemas 
+in `/data/json_data_schemas`. This is done to:
+- explore the schemas 
+- debugging data cleaning script, avoiding paying for AWS Glue Crawler just 
+  to discover a bug
+- validate data types discovered by Glue
 
 ### `json_to_tabular.py`
 
-This scripts converts collections of JSONs, created with `clean_data.py`, to 
+This script converts collections of JSONs, created with `clean_data.py`, to 
 CSV or Apache Parquet. Results are saved in `/data/csv_data` or `/data/parquet_data`, 
 depending on target format.
-
-

@@ -4,7 +4,7 @@ import os
 import pandas as pd
 
 
-DATA_DIR = os.path.join("data", "cleaned_data")
+DATA_DIR = os.path.join("data", "json_data")
 CSV_DATA_DIR = os.path.join("data", "csv_data")
 PARQUET_DATA_DIR = os.path.join("data", "parquet_data")
 

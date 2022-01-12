@@ -9,7 +9,7 @@ from tqdm import tqdm
 
 
 IN_DATA_DIR = os.path.join("data", "raw_data")
-OUT_DATA_DIR = os.path.join("data", "cleaned_data")
+OUT_DATA_DIR = os.path.join("data", "json_data")
 
 JsonType = Dict[str, Any]
 

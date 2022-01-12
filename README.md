@@ -6,11 +6,13 @@ A proof-of-concept (PoC) project for serverless Business Intelligence (BI) pipel
 - AWS Athena - SQL query engine
 - AWS QuickSight - visualization tool
 
-## Data processing scripts
+## Data preprocessing scripts
 
-A few scripts for processing the Yelp dataset. The code assumes that .json 
-files are in the `/data` subdirectory, with raw JSONs (base dataset) in the 
-`/data/raw_data`. Other subdirectories are created by scripts as needed.
+A few scripts in `data_preprocessing_scripts` directory for cleaning and preprocessing the Yelp dataset. 
+
+The code assumes the following directories structure:
+- `/data_preprocessing_scripts/data/raw_data` - contain raw `business.json`, `review.json` and `user.json` from the Yelp dataset
+- `/data_preprocessing_scripts/data` - contain (empty) `csv_data`, `json_data`, `json_data_schemas` and `parquet_data` directories
 
 ### `clean_data.py`
 
@@ -51,3 +53,7 @@ in `/data/json_data_schemas`. This is done to:
 This script converts collections of JSONs, created with `clean_data.py`, to 
 CSV or Apache Parquet. Results are saved in `/data/csv_data` or `/data/parquet_data`, 
 depending on target format.
+
+## Athena SQL queries
+
+SQL queries for usage in AWS Athena for benchmarking the approaches are in `SQL_queries` directory.

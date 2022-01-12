@@ -1,0 +1,1 @@
+select distinct (select count(*) from "yelp"."review" where useful > 0) as useful_cnt, (select count(*) from "yelp"."review" where funny > 0) as funny_cnt, (select count(*) from "yelp"."review" where cool > 0) as cool_cnt

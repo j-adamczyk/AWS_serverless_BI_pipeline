@@ -1,0 +1,2 @@
+CREATE OR REPLACE VIEW most_popular_businesses_by_review_count_and_avg_rating AS
+SELECT business_id, name, AVG(stars) AS "avg rating", review_count FROM "yelp"."business" GROUP BY name, review_count, business_id HAVING AVG(stars) > 4 ORDER BY review_count DESC;

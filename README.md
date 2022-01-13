@@ -57,26 +57,3 @@ depending on target format.
 ## Athena SQL queries
 
 SQL queries for usage in AWS Athena for benchmarking the approaches are in `SQL_queries` directory.
-
-"""
-top 10-15 cities / USA states with best rated restaurants
-business.json: geo plot for each business category
-top 10 cities most active in Yelp (with highest number of reviews per business)
-
-Monika:
-business.json: bar plot: average star rating per business category
-business.json: average star rating for each state (geo plot)
-business.json + checkin.json (or review.json?): geo plot with N most “popular” restaurants (the biggest number of checkins/reviews) // w sumie zrobiłam biznesy, a nie restauracje xD
-
-Emilia:
-business.json + checkin.json (or review.json?): business rating vs “popularity” of the restaurant
-business.json + checkin.json: geo plots (possibly with e.g. roads): with restaurants with the biggest number (ratio?) of regular customers and with the biggest number (ratio?) of random customers (basing on visits count for each customer)
-business.json + review.json: for the business with the biggest number of reviews, prepare a timeline with average rating (or bar plot with average rating for each year?)
-business.json + review.json: check validity of values in the “review_count” field of business table
-check number and percentage of businesses with invalid review numbers
-review.json: number of reviews for each rating
-review.json: counts of useful, funny and cool reviews
-user.json: user_id, number of reviews for the user with the biggest number of reviews
-user.json: stats regarding numbers of fans: average, max, min, median
-
-"""
